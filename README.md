@@ -1,1 +1,1 @@
-A Quarto-based introduction and outlining of plans for the Okemo Verso Pod. Please see [link](https://verso-uvm.github.io/verso_okemo_onboarding/Quarto/intro.html) to work through it. 
+A Quarto-based introduction and outlining of plans for the Okemo Verso Pod. Please see [Github Website](https://verso-uvm.github.io/verso_okemo_onboarding/Quarto/intro.html) to work through it. 

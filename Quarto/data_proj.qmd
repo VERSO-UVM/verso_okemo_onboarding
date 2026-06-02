@@ -1,5 +1,5 @@
 ---
-title: Data Project
+title:  Onboarding Data Project
 author: Fitz Koch
 date: today
 description:  Introduction to data engineering with SQL/duckdb in Quarto notebooks

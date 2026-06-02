@@ -1,0 +1,1 @@
+A Quarto-based introduction and outlining of plans for the Okemo Verso Pod. Please see [link](wikipeida.com) to work through it. 

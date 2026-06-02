@@ -1,0 +1,9 @@
+---
+title: Typescript Project
+author: Fitz Koch
+date: today
+description:  Introduction to typescript
+---
+
+
+# TBD

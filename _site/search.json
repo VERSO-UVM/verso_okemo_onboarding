@@ -1,0 +1,123 @@
+[
+  {
+    "objectID": "Quarto/data_proj.html",
+    "href": "Quarto/data_proj.html",
+    "title": "Data Project",
+    "section": "",
+    "text": "The point of this project is to get some basic familiarity with qmd files, duckdb, and SQL if you don’t already have any.\nPlease complete this project in order. Spend no more than 12-15 hours on it unless you’re having a blast or answering questions that are really interesting to you. You’re getting paid to learn something!\n\n\n\nRemember: the point is learning and ownership. This project is not for a grade, it’s for you to get ready for the summer, learn a lot, have fun, and hopefully build a resume. You’ll get paid either way, so make the time worth something to yourself.\nDO NOT copy and paste anything from AI, or use any AI learning tool directly.\nFEEL FREE to ask AI any questions, carefully read its answers, including reading functions that it wrote, and then reimplement them, or the logic behind them, in your code.\nHave fun!",
+    "crumbs": [
+      "Quarto",
+      "Data Project"
+    ]
+  },
+  {
+    "objectID": "Quarto/data_proj.html#rules",
+    "href": "Quarto/data_proj.html#rules",
+    "title": "Data Project",
+    "section": "",
+    "text": "Remember: the point is learning and ownership. This project is not for a grade, it’s for you to get ready for the summer, learn a lot, have fun, and hopefully build a resume. You’ll get paid either way, so make the time worth something to yourself.\nDO NOT copy and paste anything from AI, or use any AI learning tool directly.\nFEEL FREE to ask AI any questions, carefully read its answers, including reading functions that it wrote, and then reimplement them, or the logic behind them, in your code.\nHave fun!",
+    "crumbs": [
+      "Quarto",
+      "Data Project"
+    ]
+  },
+  {
+    "objectID": "Quarto/data_proj.html#repo-setup",
+    "href": "Quarto/data_proj.html#repo-setup",
+    "title": "Data Project",
+    "section": "0: Repo Setup",
+    "text": "0: Repo Setup\n\nCreate a github repository named [your_name]-okemo-data.\nMake the repo public, and share it with me.\nAdd a README, explaining what the project is, if you haven’t already, and commit it.\n\nFor all future steps, git commit at the end of every step where it makes sense. Include a message saying what you’ve done. At the end of each section, git rebase and squash, add, and push. Ask an LLM about what rebase is and why it’s useful.",
+    "crumbs": [
+      "Quarto",
+      "Data Project"
+    ]
+  },
+  {
+    "objectID": "Quarto/data_proj.html#code-setup",
+    "href": "Quarto/data_proj.html#code-setup",
+    "title": "Data Project",
+    "section": "1: Code setup",
+    "text": "1: Code setup\nNote, all of the below is operating system sensitive. Feel free to ask AI to help you with it – but do the steps yourself, and pay attention to what’s going on!\n\nGet a package manager of some sort: conda or uv.\nCreate a python environment with duckdb in it. Add whatever else you need when you need it.\nDownload quarto and get it connected to your terminal.\nIf you don’t already, get an IDE code editor (VS code, X Code, Sublime, etc.)\n\nIf you’re married to VIM, or whatever, that’s okay, so long as it doesn’t disrupt your work. Note that vscode has a VIM method.\n\nAdd ruff. It won’t work in quarto, but you need to do it sometime.\n\ninstall it if you haven’t already\nadd a .toml with your ruff specifications\nAdd a separate playground",
+    "crumbs": [
+      "Quarto",
+      "Data Project"
+    ]
+  },
+  {
+    "objectID": "Quarto/data_proj.html#data-engineering",
+    "href": "Quarto/data_proj.html#data-engineering",
+    "title": "Data Project",
+    "section": "2: Data Engineering",
+    "text": "2: Data Engineering\n\nGet a dataset from kaggle or somewhere like it.\nCreate a Data folder and store the data in there. Make sure you specify that it is raw.\nCreate a folder for your .qmd files and create an engineering.qmd file in it.\nCreate a yaml header for your Quarto document. Look at the code in this repository for some ideas.\nStart coding! Begin by moving to the root and importing with code like this:\n\n\nimport os\nfrom pathlib import Path\nimport duckdb\n\n_project_root = Path.cwd()\nwhile not (_project_root / \".git\").exists():\n    _project_root = _project_root.parent\n    if _project_root == _project_root.parent:\n        raise RuntimeError(\".git not found — are you inside the repo?\")\nos.chdir(_project_root)\nprint(os.getcwd())\n\n/home/fitsl/workbench/verso_okemo_onboarding\n\n\nWrite, in plain text, what this code does, above it. Do this for all future cells. You don’t have to go super detailed. Explain like I’m curious but not technical. Note that the code in this is turned off due to the yaml piece at the beginning (see the code for details).\nIf this code doesn’t make sense you or doesn’t work, just use os.chdir(\"dir\") to your repo root. Note that code can hang on the above, so if things are taking a long time, that’s a likely culprit.\n\nGet the dataset into memory using pandas.\nDo the same using duckdb. You will have to use code that looks something like:\n\n\nfrom pathlib import Path \n\npath = Path(\"Data/info.parquet\")\ncon = duckdb.connect()\ncon.execute(f\"\"\"\n  CREATE OR REPLACE VIEW zoning AS \n  SELECT * FROM read_parquet('{path}')\n\"\"\")\ndf = con.execute(\"SELECT * FROM zoning\").df()\ndf.head()\n\n\n\n\n\n\n\n\nOBJECT_ID\nCounty\nRPC\nMunicipal_Name\nGEO_ID\nDistrict_Name\nAbbreviated_District_Name\nDistrict_Type\nElderly_Housing_District\nBylaw_Date\nDistrict_Mapped\nOverlay_District\nBase_Density\nAffordable_Housing_District\nNotes\nAcres\n\n\n\n\n0\n1691\nWindham\nWRC\nRockingham\n5002560250\nRiverfront 14\nR-14\nNonresidential\nNo\nNaT\nYes\nNo\nNaN\nNo\nMultifamily Dwellings Could Be Included As Acc...\n25.152489\n\n\n1\n1682\nWindham\nWRC\nRockingham\n5002560250\nCentral Business\nCb-7\nMixed\nNo\nNaT\nYes\nNo\nNaN\nNo\nNone\n19.306718\n\n\n2\n1686\nWindham\nWRC\nRockingham\n5002560250\nIndustrial 14\nInd-14\nNonresidential\nNo\nNaT\nYes\nNo\nNaN\nNo\nMultifamily Dwellings Could Be Included As Acc...\n46.732680\n\n\n3\n557\nWindsor\nMARC\nSpringfield\n5002769550\nExit Seven District\nE7\nNonresidential\nNo\nNaT\nYes\nNo\nNaN\nNo\nNone\n27.471788\n\n\n4\n570\nWindsor\nMARC\nSpringfield\n5002769550\nRiverbank Protection Overlay District\nRpd\nOverlay\nNo\nNaT\nYes\nNo\nNaN\nNo\nNone\n1286.104916\n\n\n\n\n\n\n\nNote that the code instead the strings con.execute(\" \") is sql. If you don’t know any sql, watch a youtube video, or ask an AI, or whatever helps you learn. It’s designed to be readable, but it can still be tricky sometimes. SQL keywords are generally in all-caps, and table/var names are in lower-case.\n\nUsing both pandas and SQL, show that you know how to examine the data:\n\nget the names of the columns (hint, use SQLs “DESCRIBE”)\nget the unique value counts for one or two of the columns\nclean or reformat the data in some way. If nothing jumps out to you that can be cleaned, just doing something random (split columns, add a dummy variable, pivot form long to wide, etc.)\ndiscuss your general sense of the data\nmake a few basic plots using matplotlib or seaborn. Nothing fancy, and very low level and summarizing.\n\n\nRemember to articulate before each cell block what you want and expect it to do. If you’re better at one language or the other, do that first and then work from that as an example.\n\nSplit the data into separate .parquet files by first creating views or tables using some portions of the columns, then save those views to parquet files. Make sure you don’t overwrite your existing data files; these are your clean tables. Use easily parseable names.\n\nWhat’s the meaningful difference between an SQL view and a table? Why would we want one or the other? Put your answer in plain text in your qmd.",
+    "crumbs": [
+      "Quarto",
+      "Data Project"
+    ]
+  },
+  {
+    "objectID": "Quarto/data_proj.html#data-analysis-and-report",
+    "href": "Quarto/data_proj.html#data-analysis-and-report",
+    "title": "Data Project",
+    "section": "3. Data Analysis and Report",
+    "text": "3. Data Analysis and Report\n\nCreate a new report.qmd file with the same initial structure (yaml, root, imports) as engineering.qmd.\nMake a db connection to your three parquet files. Name them after what you parse in.\nNow you get to actually ask some questions of your data. Pick two or three things you’re genuinely curious about. Before each cell, write in plain text what question you’re asking and what you expect to find. Then write code to answer it, getting the data both with pandas and with SQL. Note if there are any places that one or the other seems more or less difficult. Some ideas:\n\ngroup by a category and compare averages, counts, or sums across groups\nfilter down to an interesting subset and see how it differs from the whole\n\n\nExample to see the number of rows for each value in a column District_Name:\n\ndf = con.execute(\"\"\"--sql\n  SELECT \n    District_Name as District,\n    COUNT(*) AS Count,\n  FROM zoning \n  GROUP BY District_Name\n  ORDER BY COUNT(*) DESC\n  LIMIT 15\n\"\"\").df()\ndf.head()\n\n\n\n\n\n\n\n\nDistrict\nCount\n\n\n\n\n0\nConservation\n41\n\n\n1\nRural Residential\n41\n\n\n2\nVillage\n39\n\n\n3\nIndustrial\n38\n\n\n4\nFlood Hazard Overlay\n29\n\n\n\n\n\n\n\n\nMake a few plots that tell a story. Use matplotlib or seaborn. Aim for 2-4 plots that each make a point. For each one:\n\nsay in plain text what the plot is meant to show before you make it\ngive it a real title, axis labels, and legend\nwrite a sentence or two after it on what you actually see, and whether it matched what you expected\n\n\nExample plot to visualize the above:\n\nimport seaborn as sns \nimport matplotlib.pyplot as plt \n\nfig, ax = plt.subplots()\nsns.barplot(data=df, x=\"District\", y=\"Count\", hue=\"District\", ax=ax, palette=\"tab20\", legend=True)\nplt.title(\"Top Zoning District Types in Vermont\")\nax.set_xticks([])\nplt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05), ncol=3)\nplt.show()\n\n\n\n\n\n\n\n\n\nWrite a short conclusion. What did you learn about the data? What would you look at next if you had more time? What surprised you? No need to dazzle here, just be honest and clearly communicative.",
+    "crumbs": [
+      "Quarto",
+      "Data Project"
+    ]
+  },
+  {
+    "objectID": "Quarto/data_proj.html#publish",
+    "href": "Quarto/data_proj.html#publish",
+    "title": "Data Project",
+    "section": "4. Publish",
+    "text": "4. Publish\nThe goal is a small github.io website with your rendered .qmd pages, plus a downloadable pdf of your report.\n\nAdd a _quarto.yml project file at the root that builds a website. Look at Quarto’s website docs – you want a project: type: website and a navbar linking your engineering.qmd and report.qmd pages. Ask AI to explain any field you don’t recognize, then write it yourself. See the _quarto_yml in this repo if you get stuck.\nConfigure your report.qmd to also render to pdf. You’ll add format: with both html and pdf to its yaml header. You may need a LaTeX install – quarto install tinytex is the easy path. Add a link on your site so people can download the pdf. If this proves impossible, that’s also fine.\nRender the whole site locally with quarto render and open it in your browser. Fix anything that looks broken. Make sure code, plots, and the pdf link all work.\nPublish to GitHub Pages. The simplest way is to go to settings in github browser, then pages, then deploy from a branch. Read what it prints; it’ll tell you your https://[your_name].github.io/[your_name]-okemo-data URL.\nPut that live URL at the top of your repo’s README, and share it with me.",
+    "crumbs": [
+      "Quarto",
+      "Data Project"
+    ]
+  },
+  {
+    "objectID": "Quarto/intro.html",
+    "href": "Quarto/intro.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "This mini-website will serve as an introduction to the skills and projects we’ll be working on during the summer of 2026 for the Okemo Verso Pod.\n\n\n\nGit is really great for working on projects together as well as for storing your stuff cheaply. Hopefully VERSO’s main onboarding helped with that.\nQuarto Notebooks (.qmd) give you the advantages of jupyter notebooks in a more replicable and git-friendly way:\n\nIncredibly versatile, and can include any Python code as well as R.\nInteractive coding environment\nOne document sources converts to:\n\nInteractive slides\n.html for websites, just like this one\n.ipynb jupyter notebook files\n.pdf files. Note this can use Latex, like: \\(2 = \\frac{10}{5}\\)\n\nAre purely text-based, so git differentials make sense and are actually readable.\n\nCoding practices\n\nUsing a project-wide formatter. We’ll use ruff.\n\nKeeps code readable and short\nMinimizes unnecessary git differentials.\n\nProper git usage\n\ncommit on every meaningful change\npull request every complete feature.\nrespond to, and fix, reviews.\n\nType hints\n\nclearer code\neasier bug hunts\n\n\nData Engineering for larger-scale data-science\n\nETL\nSee how data works when you have a lot of it that you want to use at different times, many times, in different ways.\n\nPolicy Research\n\nBuilding good projects often means translating prior work or uncertain requests. This will help with that.\n\nTypescript (Optional)\n\nlearn true power of types\nlearn how internet actually works\n\n\n\n\n\n\nBenefits Cliff\n\nLanguages: qmd files (no code) and typescript logic\nGoal: help legislators and everyday people understand:\n\nwhat benefits are available\nhow those benefits change with income or family situation\nhow those benefits relate with census information about income and family situation\n\nWork to be done:\n\nAdding more benefits\n\nPolicy review: build out core logic in qmd files for calculating benefits from policy manuals and other resources\ntypescript: code up algorithms\nbackfill: work through existing typescript algorithms and backfill the logic into qmd documentation.\n\nPart 2: Extension\n\nAdd in information about resources required for life per county\nData analysis: pull in census information, etc., and see how comparisons work out.\n\n\n\nVermont Reports\n\nLanguages: SQL (duckdb), qmd, and Python.\nGoal: help citizens, select boards, local government, and planners better understand their towns\nWork to be done:\n\nData Engineering:\n\nUpdating all data engineering logic :\n\nget data (external APIs or raw download)\nbuild clean data (SQL and python scripts)\n\nrequires lots of though and consultation about how we should most effectively split up the tables.\n\nruntime queries / logic (SQL and python scripts)\napi (pythons’ FASTAPI library)\nfrontend\n\nRemoving and cleaning legacy code\n\nAnalysis:\n\nAdding in new functionality and places for analysis, especially putting different data streams in conversation with each other\n\nEG, how broadband and wastewater infrastructure inter-relate.\n\n\n\n\nTBD:\n\nLanguages: almost certainly SQL, Python, .qmd\nGoal: help people of Vermont. Working with Kendall to see exactly what that is.",
+    "crumbs": [
+      "Quarto",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "Quarto/intro.html#skills",
+    "href": "Quarto/intro.html#skills",
+    "title": "Introduction",
+    "section": "",
+    "text": "Git is really great for working on projects together as well as for storing your stuff cheaply. Hopefully VERSO’s main onboarding helped with that.\nQuarto Notebooks (.qmd) give you the advantages of jupyter notebooks in a more replicable and git-friendly way:\n\nIncredibly versatile, and can include any Python code as well as R.\nInteractive coding environment\nOne document sources converts to:\n\nInteractive slides\n.html for websites, just like this one\n.ipynb jupyter notebook files\n.pdf files. Note this can use Latex, like: \\(2 = \\frac{10}{5}\\)\n\nAre purely text-based, so git differentials make sense and are actually readable.\n\nCoding practices\n\nUsing a project-wide formatter. We’ll use ruff.\n\nKeeps code readable and short\nMinimizes unnecessary git differentials.\n\nProper git usage\n\ncommit on every meaningful change\npull request every complete feature.\nrespond to, and fix, reviews.\n\nType hints\n\nclearer code\neasier bug hunts\n\n\nData Engineering for larger-scale data-science\n\nETL\nSee how data works when you have a lot of it that you want to use at different times, many times, in different ways.\n\nPolicy Research\n\nBuilding good projects often means translating prior work or uncertain requests. This will help with that.\n\nTypescript (Optional)\n\nlearn true power of types\nlearn how internet actually works",
+    "crumbs": [
+      "Quarto",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "Quarto/intro.html#projects",
+    "href": "Quarto/intro.html#projects",
+    "title": "Introduction",
+    "section": "",
+    "text": "Benefits Cliff\n\nLanguages: qmd files (no code) and typescript logic\nGoal: help legislators and everyday people understand:\n\nwhat benefits are available\nhow those benefits change with income or family situation\nhow those benefits relate with census information about income and family situation\n\nWork to be done:\n\nAdding more benefits\n\nPolicy review: build out core logic in qmd files for calculating benefits from policy manuals and other resources\ntypescript: code up algorithms\nbackfill: work through existing typescript algorithms and backfill the logic into qmd documentation.\n\nPart 2: Extension\n\nAdd in information about resources required for life per county\nData analysis: pull in census information, etc., and see how comparisons work out.\n\n\n\nVermont Reports\n\nLanguages: SQL (duckdb), qmd, and Python.\nGoal: help citizens, select boards, local government, and planners better understand their towns\nWork to be done:\n\nData Engineering:\n\nUpdating all data engineering logic :\n\nget data (external APIs or raw download)\nbuild clean data (SQL and python scripts)\n\nrequires lots of though and consultation about how we should most effectively split up the tables.\n\nruntime queries / logic (SQL and python scripts)\napi (pythons’ FASTAPI library)\nfrontend\n\nRemoving and cleaning legacy code\n\nAnalysis:\n\nAdding in new functionality and places for analysis, especially putting different data streams in conversation with each other\n\nEG, how broadband and wastewater infrastructure inter-relate.\n\n\n\n\nTBD:\n\nLanguages: almost certainly SQL, Python, .qmd\nGoal: help people of Vermont. Working with Kendall to see exactly what that is.",
+    "crumbs": [
+      "Quarto",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "Quarto/typescript.html",
+    "href": "Quarto/typescript.html",
+    "title": "Typescript Project",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "Quarto",
+      "Typescript Project"
+    ]
+  }
+]

@@ -1,0 +1,11 @@
+*cache*
+*log
+*aux
+*tex
+*toc
+/.quarto/
+**/*.quarto_ipynb
+results/*
+logs/*
+animations/
+Quarto/intro_files

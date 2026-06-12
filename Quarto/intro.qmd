@@ -84,3 +84,8 @@ Complete the following tutorials:
 1. Git: complete standard VERSO repository.
 2. Complete the [Data Engineering In Quarto](data_proj.qmd) project
 3. Complete the [Basic Typescript](typescript.qmd) project (COMING SOON)
+
+
+# Work Projects:
+
+1. [Data Engineering in Vermont Data Collaborative](Okemo_Project_1.qmd)

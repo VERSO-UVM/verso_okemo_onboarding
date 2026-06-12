@@ -1,0 +1,82 @@
+---
+title:  Vermont Data Collaborative Data Engineering 101 and Assignment
+author: Fitz Koch
+date: today
+description:  Introduction to Data Engineering in the actual Vermont Data Collaborative Project. 
+jupyter: leahy_data
+---
+
+# Getting Started
+
+As you work through this and the following sections, please number your responses the same. You can do this with subsections "## 1" or with a list of numbers as I have done. 
+
+0. Create a new `.qmd` in your repository titled `VDC-Data-Engineering.qmd` and make sure that the render name is prettier. Start a first section: "# Getting Started"
+1. Go to our [main github page](https://github.com/VERSO-UVM/react-vt-data). This is the repo you'll largely be working on for the next month. 
+2. Navigate to the README step 1 in the "installation and setup" section to get the project locally installed on your computer, do the following steps. Do not skip the large file storage part. 
+    * NOTE: these steps are built around an assumption that you know how to use your computers terminal. If you don't know how to do that, find a tutorial online or ask AI to help you get some baseline skills. 
+3. Read through the `Vision.md` and `Codebase_Primer.md` files in the `Design/current` folder locally. Take notes and write down questions in your `.qmd` file. As you move through the codebase file, quickly scan the files in the folders it covers and get a rough sense of how they work. 
+4. Complete the rest of the github's README instructions. Troubleshoot and ask questions until you have a local version of the website that you can click through on your computer.  Note any areas of particular difficulty or possibilities for improvement in your `.qmd`. 
+5. Look at the filter on the zoning exploratory mapping page. Does the idea of a cascading filter make sense to you? Write an explanation in your `qmd.` 
+6. If you're using VSCODE, I recommend installing the following extensions and briefly reading their readmes. 
+    * quarto
+    * inline sql
+    * quack syntax
+
+# Getting Familiar
+
+0. Start a new section in your `.qmd`: "# Getting Familiar"
+1. Read through `backend/app_utils/zoning.py`, the deprecated code for runtime cleaning and adjustments on the zoning atlas data. 
+    * Make sure that you follow function definitions (F12 in VS Code is a useful hotkey for this). 
+    * Write an explanation of how the tooltips are generated in your `.qmd`, both in the abstract and for zoning in particular. Either speculate, or look at the frontend code to get a sense of how the tooltip might be shown to the user. 
+    * Take notes and write down questions in your `.qmd`. 
+2. Read through `design/current/Data_Engineering.md` in the same folder. 
+    * Take notes and write down questions in your `.qmd`. 
+    * Read sections 1-3 of  the linked [Tidy Data](https://vita.had.co.nz/papers/tidy-data.pdf) article closely. 
+        * Summarize the article.
+        * Skim the rest of it, if interested. 
+    * Explain the referenced `schema.json`. If you don't know about `.json` files, read and watch youtube videos about them, etc., for at least an hour. 
+    * Explain how the filters work.
+        *  Where is information about them stored? 
+        * What is the difference between the primary dataset and secondary dataset keys?
+        * I want to filter a zoning query that selects all zoning areas that are designated for Affordable Housing with a spatial intersection of census areas that have a population over 10.000 (note, census is not yet in the `schema.json`). 
+            * What is my primary dataset?
+            * What is my secondary dataset? 
+            * What is my `join_key`?
+            * What is my `join_type`? 
+            * Speculate as to what the columns might be, or look through the census tables to find out what columns might make sense for such a filter. 
+3. Read through `backend/notebooks/zoning/table_build.qmd`. Take notes and write down questions in your `.qmd`. Run each cell in order. 
+    * Note that this checks its work against existing data sources. 
+4. Read through `backend/build/zoning/build.py`.
+    * What is the relationship of this to the `.qmd`  we just looked at? 
+    * What are the final names of the tables it produces? How are these names produced? 
+5. Read through `backend/query/core_functions.py`. Take notes and write down questions. 
+    * What does `sql_filter_block` do? What functions help it do that? Walk yourself through the logic in detail, and explain why it might be useful with reference to the data engineering concepts from part (2). 
+6. Read through `backend/query/zoning.py`. 
+    * Take notes and write down questions. 
+    * How does this file read in `sql` into its functions? Where is that `sql` stored?
+    * Can you think of a way to reduce reused code on this page? 
+7. Find and look at the zoning code in the `backend/api` folder as well. Explain how they work. How does the frontend find what filters a zoning query needs? Why isn't there anything in the schema about the fourth table build in `table_build.qmd`?
+7. Reiterate the general data engineering philosophy and work from this section, and reflect. Some suggestions:
+    * Are there any areas you noticed that don't fit with the Tidy philosophy? 
+    * Anything that seemed unclear or that could use improvement? 
+    * What was the most interesting or striking thing you learned? 
+
+
+
+# Getting to Work 
+
+Your project is to take a new dataset and move from the old way of accessing data to a new one. Look through the datasets in `backend/Data`. Pick one that you are interested in and message me, who will assign you an github issue to complete the following project, with a `Pull Request` created after each step. 
+
+
+1. revamp the data collection process, if possible. 
+2. port functionality in `app_utils` over to sql and duckdb. 
+    * create a similar `table_build.qmd` page for your dataset, walking through how you built the tables and what decisions were involved. You should include more comments and discussion than in the previous one, and show that you've played around with the data enough that your decisions are grounded in it. Keep your notebook clear and organized with "##" section headers and so on. 
+        * discuss with me any decision to split the dataset into different tables than previously. This is probably a good idea, but we should talk about it. 
+    * create a similar `build.py` page for your dataset, consolidated down from the `table_build`. 
+3. Use the `.sql` datasets you've used to construct a similar dataset overview and basic analysis (with plots, tables, etc.) in a quarto notebook similar to introductory project. Put the dataset in that project, render the notebook there, and send a link to me. 
+4. Update logic to reference `sql` tables: 
+    * create a similar `dataset.py` query page for your dataset. 
+    * refigure and reconstruct the `fastapi` calls to make reference to the sql queries you built, just as in the zoning api calls. 
+    * add filtering/joining information to the `schema.json`. For now, the primary dataset will almost certainly just be "default". 
+    * HARD OPTIONAL BONUS : these updates will probably break the frontend. If you've been working on your `typescript`, you can try to fix it yourself, or just let me know and I'll fix it. 
+        * NOTE: if you don't fix it yourself, don't make a pull request, just notify me. 

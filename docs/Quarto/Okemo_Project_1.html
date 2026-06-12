@@ -8,9 +8,9 @@
 
 <meta name="author" content="Fitz Koch">
 <meta name="dcterms.date" content="2026-06-12">
-<meta name="description" content="Introduction to Okemo Verso Pod">
+<meta name="description" content="Introduction to Data Engineering in the actual Vermont Data Collaborative Project.">
 
-<title>Introduction – Okemo Onboarding</title>
+<title>Vermont Data Collaborative Data Engineering 101 and Assignment – Okemo Onboarding</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,35 +72,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -113,7 +84,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Quarto/data_proj.html">Quarto</a></li><li class="breadcrumb-item"><a href="../Quarto/intro.html">Introduction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Quarto/data_proj.html">Quarto</a></li><li class="breadcrumb-item"><a href="../Quarto/Okemo_Project_1.html">Vermont Data Collaborative Data Engineering 101 and Assignment</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -155,13 +126,13 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Quarto/intro.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Quarto/intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Quarto/Okemo_Project_1.html" class="sidebar-item-text sidebar-link">
+  <a href="../Quarto/Okemo_Project_1.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Vermont Data Collaborative Data Engineering 101 and Assignment</span></a>
   </div>
 </li>
@@ -179,15 +150,11 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
-  <ul class="collapse">
-  <li><a href="#skills" id="toc-skills" class="nav-link" data-scroll-target="#skills">Skills</a></li>
-  <li><a href="#projects" id="toc-projects" class="nav-link" data-scroll-target="#projects">Projects</a></li>
-  </ul></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
-  <li><a href="#work-projects" id="toc-work-projects" class="nav-link" data-scroll-target="#work-projects">Work Projects:</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting Started</a></li>
+  <li><a href="#getting-familiar" id="toc-getting-familiar" class="nav-link" data-scroll-target="#getting-familiar">Getting Familiar</a></li>
+  <li><a href="#getting-to-work" id="toc-getting-to-work" class="nav-link" data-scroll-target="#getting-to-work">Getting to Work</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="intro.ipynb" download="intro.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li><li><a href="intro.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Okemo_Project_1.ipynb" download="Okemo_Project_1.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li><li><a href="Okemo_Project_1.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -196,14 +163,14 @@ window.Quarto = {
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Quarto/data_proj.html">Quarto</a></li><li class="breadcrumb-item"><a href="../Quarto/intro.html">Introduction</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Quarto/data_proj.html">Quarto</a></li><li class="breadcrumb-item"><a href="../Quarto/Okemo_Project_1.html">Vermont Data Collaborative Data Engineering 101 and Assignment</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Introduction</h1>
+<h1 class="title">Vermont Data Collaborative Data Engineering 101 and Assignment</h1>
 </div>
 
 <div>
   <div class="description">
-    Introduction to Okemo Verso Pod
+    Introduction to Data Engineering in the actual Vermont Data Collaborative Project.
   </div>
 </div>
 
@@ -232,139 +199,112 @@ window.Quarto = {
 </header>
 
 
-<section id="overview" class="level1">
-<h1>Overview</h1>
-<p>This mini-website will serve as an introduction to the skills and projects we’ll be working on during the summer of 2026 for the Okemo Verso Pod.</p>
-<section id="skills" class="level2">
-<h2 class="anchored" data-anchor-id="skills">Skills</h2>
-<ol type="1">
-<li><code>Git</code> is really great for working on projects together as well as for storing your stuff cheaply. Hopefully VERSO’s main onboarding helped with that.</li>
-<li>Quarto Notebooks (<code>.qmd</code>) give you the advantages of jupyter notebooks in a more replicable and git-friendly way:
+<section id="getting-started" class="level1">
+<h1>Getting Started</h1>
+<p>As you work through this and the following sections, please number your responses the same. You can do this with subsections “## 1” or with a list of numbers as I have done.</p>
+<ol start="0" type="1">
+<li>Create a new <code>.qmd</code> in your repository titled <code>VDC-Data-Engineering.qmd</code> and make sure that the render name is prettier. Start a first section: “# Getting Started”</li>
+<li>Go to our <a href="https://github.com/VERSO-UVM/react-vt-data">main github page</a>. This is the repo you’ll largely be working on for the next month.</li>
+<li>Navigate to the README step 1 in the “installation and setup” section to get the project locally installed on your computer, do the following steps. Do not skip the large file storage part.
 <ul>
-<li>Incredibly versatile, and can include any <code>Python</code> code as well as <code>R</code>.</li>
-<li>Interactive coding environment</li>
-<li>One document sources converts to:
-<ul>
-<li>Interactive slides</li>
-<li><code>.html</code> for websites, just like this one</li>
-<li><code>.ipynb</code> jupyter notebook files</li>
-<li><code>.pdf</code> files. Note this can use Latex, like: <span class="math inline">\(2 = \frac{10}{5}\)</span></li>
+<li>NOTE: these steps are built around an assumption that you know how to use your computers terminal. If you don’t know how to do that, find a tutorial online or ask AI to help you get some baseline skills.</li>
 </ul></li>
-<li>Are purely text-based, so git differentials make sense and are actually readable.</li>
-</ul></li>
-<li>Coding practices
+<li>Read through the <code>Vision.md</code> and <code>Codebase_Primer.md</code> files in the <code>Design/current</code> folder locally. Take notes and write down questions in your <code>.qmd</code> file. As you move through the codebase file, quickly scan the files in the folders it covers and get a rough sense of how they work.</li>
+<li>Complete the rest of the github’s README instructions. Troubleshoot and ask questions until you have a local version of the website that you can click through on your computer. Note any areas of particular difficulty or possibilities for improvement in your <code>.qmd</code>.</li>
+<li>Look at the filter on the zoning exploratory mapping page. Does the idea of a cascading filter make sense to you? Write an explanation in your <code>qmd.</code></li>
+<li>If you’re using VSCODE, I recommend installing the following extensions and briefly reading their readmes.
 <ul>
-<li>Using a project-wide formatter. We’ll use <code>ruff</code>.
-<ul>
-<li>Keeps code readable and short</li>
-<li>Minimizes unnecessary <code>git</code> differentials.</li>
-</ul></li>
-<li>Proper <code>git</code> usage
-<ul>
-<li>commit on every meaningful change</li>
-<li>pull request every complete feature.</li>
-<li>respond to, and fix, reviews.</li>
-</ul></li>
-<li>Type hints
-<ul>
-<li>clearer code</li>
-<li>easier bug hunts</li>
-</ul></li>
-</ul></li>
-<li>Data Engineering for larger-scale data-science
-<ul>
-<li>ETL</li>
-<li>See how data works when you have a lot of it that you want to use at different times, many times, in different ways.</li>
-</ul></li>
-<li>Policy Research
-<ul>
-<li>Building good projects often means translating prior work or uncertain requests. This will help with that.</li>
-</ul></li>
-<li>Typescript (Optional)
-<ul>
-<li>learn true power of types</li>
-<li>learn how internet actually works</li>
+<li>quarto</li>
+<li>inline sql</li>
+<li>quack syntax</li>
 </ul></li>
 </ol>
 </section>
-<section id="projects" class="level2">
-<h2 class="anchored" data-anchor-id="projects">Projects</h2>
-<ol type="1">
-<li>Benefits Cliff
+<section id="getting-familiar" class="level1">
+<h1>Getting Familiar</h1>
+<ol start="0" type="1">
+<li>Start a new section in your <code>.qmd</code>: “# Getting Familiar”</li>
+<li>Read through <code>backend/app_utils/zoning.py</code>, the deprecated code for runtime cleaning and adjustments on the zoning atlas data.
 <ul>
-<li>Languages: <code>qmd</code> files (no code) and <code>typescript</code> logic</li>
-<li>Goal: help legislators and everyday people understand:
-<ul>
-<li>what benefits are available</li>
-<li>how those benefits change with income or family situation</li>
-<li>how those benefits relate with census information about income and family situation</li>
+<li>Make sure that you follow function definitions (F12 in VS Code is a useful hotkey for this).</li>
+<li>Write an explanation of how the tooltips are generated in your <code>.qmd</code>, both in the abstract and for zoning in particular. Either speculate, or look at the frontend code to get a sense of how the tooltip might be shown to the user.</li>
+<li>Take notes and write down questions in your <code>.qmd</code>.</li>
 </ul></li>
-<li>Work to be done:
+<li>Read through <code>design/current/Data_Engineering.md</code> in the same folder.
 <ul>
-<li>Adding more benefits
+<li>Take notes and write down questions in your <code>.qmd</code>.</li>
+<li>Read sections 1-3 of the linked <a href="https://vita.had.co.nz/papers/tidy-data.pdf">Tidy Data</a> article closely.
 <ul>
-<li>Policy review: build out core logic in <code>qmd</code> files for calculating benefits from policy manuals and other resources</li>
-<li>typescript: code up algorithms</li>
-<li>backfill: work through existing typescript algorithms and backfill the logic into <code>qmd</code> documentation.</li>
+<li>Summarize the article.</li>
+<li>Skim the rest of it, if interested.</li>
 </ul></li>
-<li>Part 2: Extension
+<li>Explain the referenced <code>schema.json</code>. If you don’t know about <code>.json</code> files, read and watch youtube videos about them, etc., for at least an hour.</li>
+<li>Explain how the filters work.
 <ul>
-<li>Add in information about resources required for life per county</li>
-<li>Data analysis: pull in census information, etc., and see how comparisons work out.</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>Vermont Reports
+<li>Where is information about them stored?</li>
+<li>What is the difference between the primary dataset and secondary dataset keys?</li>
+<li>I want to filter a zoning query that selects all zoning areas that are designated for Affordable Housing with a spatial intersection of census areas that have a population over 10.000 (note, census is not yet in the <code>schema.json</code>).
 <ul>
-<li>Languages: <code>SQL</code> (duckdb), <code>qmd</code>, and <code>Python</code>.</li>
-<li>Goal: help citizens, select boards, local government, and planners better understand their towns</li>
-<li>Work to be done:
-<ul>
-<li>Data Engineering:
-<ul>
-<li>Updating all data engineering logic :
-<ol type="1">
-<li>get data (external APIs or raw download)</li>
-<li>build clean data (SQL and python scripts)
-<ul>
-<li>requires lots of though and consultation about how we should most effectively split up the tables.</li>
-</ul></li>
-<li>runtime queries / logic (SQL and python scripts)</li>
-<li>api (pythons’ FASTAPI library)</li>
-<li>frontend</li>
-</ol></li>
-<li>Removing and cleaning legacy code</li>
-</ul></li>
-<li>Analysis:
-<ul>
-<li>Adding in new functionality and places for analysis, especially putting different data streams in conversation with each other
-<ul>
-<li>EG, how broadband and wastewater infrastructure inter-relate.</li>
+<li>What is my primary dataset?</li>
+<li>What is my secondary dataset?</li>
+<li>What is my <code>join_key</code>?</li>
+<li>What is my <code>join_type</code>?</li>
+<li>Speculate as to what the columns might be, or look through the census tables to find out what columns might make sense for such a filter.</li>
 </ul></li>
 </ul></li>
 </ul></li>
-</ul></li>
-<li>TBD:
+<li>Read through <code>backend/notebooks/zoning/table_build.qmd</code>. Take notes and write down questions in your <code>.qmd</code>. Run each cell in order.
 <ul>
-<li>Languages: almost certainly <code>SQL, Python, .qmd</code></li>
-<li>Goal: help people of Vermont. Working with Kendall to see exactly what that is.</li>
+<li>Note that this checks its work against existing data sources.</li>
+</ul></li>
+<li>Read through <code>backend/build/zoning/build.py</code>.
+<ul>
+<li>What is the relationship of this to the <code>.qmd</code> we just looked at?</li>
+<li>What are the final names of the tables it produces? How are these names produced?</li>
+</ul></li>
+<li>Read through <code>backend/query/core_functions.py</code>. Take notes and write down questions.
+<ul>
+<li>What does <code>sql_filter_block</code> do? What functions help it do that? Walk yourself through the logic in detail, and explain why it might be useful with reference to the data engineering concepts from part (2).</li>
+</ul></li>
+<li>Read through <code>backend/query/zoning.py</code>.
+<ul>
+<li>Take notes and write down questions.</li>
+<li>How does this file read in <code>sql</code> into its functions? Where is that <code>sql</code> stored?</li>
+<li>Can you think of a way to reduce reused code on this page?</li>
+</ul></li>
+<li>Find and look at the zoning code in the <code>backend/api</code> folder as well. Explain how they work. How does the frontend find what filters a zoning query needs? Why isn’t there anything in the schema about the fourth table build in <code>table_build.qmd</code>?</li>
+<li>Reiterate the general data engineering philosophy and work from this section, and reflect. Some suggestions:
+<ul>
+<li>Are there any areas you noticed that don’t fit with the Tidy philosophy?</li>
+<li>Anything that seemed unclear or that could use improvement?</li>
+<li>What was the most interesting or striking thing you learned?</li>
 </ul></li>
 </ol>
 </section>
-</section>
-<section id="next-steps" class="level1">
-<h1>Next Steps</h1>
-<p>Complete the following tutorials:</p>
+<section id="getting-to-work" class="level1">
+<h1>Getting to Work</h1>
+<p>Your project is to take a new dataset and move from the old way of accessing data to a new one. Look through the datasets in <code>backend/Data</code>. Pick one that you are interested in and message me, who will assign you an github issue to complete the following project, with a <code>Pull Request</code> created after each step.</p>
 <ol type="1">
-<li>Git: complete standard VERSO repository.</li>
-<li>Complete the <a href="../Quarto/data_proj.html">Data Engineering In Quarto</a> project</li>
-<li>Complete the <a href="../Quarto/typescript.html">Basic Typescript</a> project (COMING SOON)</li>
-</ol>
-</section>
-<section id="work-projects" class="level1">
-<h1>Work Projects:</h1>
-<ol type="1">
-<li><a href="../Quarto/Okemo_Project_1.html">Data Engineering in Vermont Data Collaborative</a></li>
+<li>revamp the data collection process, if possible.</li>
+<li>port functionality in <code>app_utils</code> over to sql and duckdb.
+<ul>
+<li>create a similar <code>table_build.qmd</code> page for your dataset, walking through how you built the tables and what decisions were involved. You should include more comments and discussion than in the previous one, and show that you’ve played around with the data enough that your decisions are grounded in it. Keep your notebook clear and organized with “##” section headers and so on.
+<ul>
+<li>discuss with me any decision to split the dataset into different tables than previously. This is probably a good idea, but we should talk about it.</li>
+</ul></li>
+<li>create a similar <code>build.py</code> page for your dataset, consolidated down from the <code>table_build</code>.</li>
+</ul></li>
+<li>Use the <code>.sql</code> datasets you’ve used to construct a similar dataset overview and basic analysis (with plots, tables, etc.) in a quarto notebook similar to introductory project. Put the dataset in that project, render the notebook there, and send a link to me.</li>
+<li>Update logic to reference <code>sql</code> tables:
+<ul>
+<li>create a similar <code>dataset.py</code> query page for your dataset.</li>
+<li>refigure and reconstruct the <code>fastapi</code> calls to make reference to the sql queries you built, just as in the zoning api calls.</li>
+<li>add filtering/joining information to the <code>schema.json</code>. For now, the primary dataset will almost certainly just be “default”.</li>
+<li>HARD OPTIONAL BONUS : these updates will probably break the frontend. If you’ve been working on your <code>typescript</code>, you can try to fix it yourself, or just let me know and I’ll fix it.
+<ul>
+<li>NOTE: if you don’t fix it yourself, don’t make a pull request, just notify me.</li>
+</ul></li>
+</ul></li>
 </ol>
 
 
